@@ -1,62 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Rádio Diversidade Poa</title>
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/lunaradio.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rádio Diversidade Poa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 15px;
+      font-size: 1.5rem;
+    }
+    main {
+      margin: 20px;
+    }
+    audio {
+      margin-top: 20px;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 10px;
+      background: #222;
+      color: white;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
+<body>
+  <header>
+    Rádio Diversidade Poa
+  </header>
 
-<body style="margin:0px">
+  <main>
+    <p>Clique no play para ouvir a rádio ao vivo:</p>
+    <audio controls>
+      <source src="http://radiodiversidadepoa.duckdns.org:8000/live" type="audio/mpeg">
+      Seu navegador não suporta o player de áudio.
+    </audio>
+  </main>
 
-<div id="lunaradio" style='width:100%; height:100%;background-image: url("img/fondo.jpg"); background-repeat: no-repeat; background-size: cover; background-position: center;
-border-radius: 0px;
-border: none;'>
-<div a href="RADIO STUDIO" title="RADIO STUDIO"></a> Desenvolvido por: DIVERSIDADE POA <a href="CHAN" title="DIVERSIDADE POA"></a></div>
-
-<script type="text/javascript">
-$("#lunaradio").lunaradio({
-	userinterface: "big",
-	backgroundcolor: "rgba(9,15,25,0.8)",
-	fontcolor: "#ffffff",
-	hightlightcolor: "#7427a9",
-	fontname: "Saira Condensed",
-	googlefont: "Saira+Condensed:wght@100",
-	fontratio: "0.3",
-	radioname: "A maior diversidade de ritmos!",
-	scroll: "true",
-	coverimage: "https://github.com/anderson-rodrigues-1982/play-radio/blob/main/logo-player.png?raw=true",
-	usevisualizer: "fake",
-	coverstyle: "animated",
-	visualizertype: "6",
-	multicolorvisualizer: "true",
-    color1: "7427a9",
-    color2: "7427a9",
-    color3: "7427a9",
-    color4: "#7427a9",
-	itunestoken: "1000lIPN",
-	metadatatechnic: "corsproxy",
-	ownmetadataurl: "",
-	streamurl: "https://fpsnew1.listen2myradio.com:2199/listen.php?ip=82.145.63.6&port=4294&type=ice&mount=stream",
-	streamtype: "shoutcast1",
-	icecastmountpoint: "",
-	radionomyid: "",
-	radionomyapikey: "",
-	radiozenoid: "",
-	radiojarid: "",
-	radiocoid: "",
-	shoutcastpath: "/;",
-	shoutcastid: "1",
-	streamsuffix: "",
-	metadatainterval: "20000",
-	volume: "85",
-	debug: "false",
-	usestreamcorsproxy: "false", 
-	corsproxy: "https://corsradio.herokuapp.com/index.php?q=",
-	autoplay:"true",
-});
-</script>
-
+  <footer>
+    Desenvolvido por Diversidade Poa
+  </footer>
 </body>
 </html>
