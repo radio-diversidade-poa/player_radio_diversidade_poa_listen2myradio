@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Rádio Diversidade POA</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/lunaradio.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: url("img/fondo.jpg") no-repeat center center;
+      background-size: cover;
+    }
+    #lunaradio {
+      width: 100%;
+      height: 550px;
+    }
+    .creditos {
+      text-align: center;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Player -->
+  <div id="lunaradio"></div>
+
+  <!-- Créditos -->
+  <div class="creditos">
+    Desarrollado por: DIVERSIDADE POA
+  </div>
+
+  <script>
+    $("#lunaradio").lunaradio({
+      userinterface: "big",
+      backgroundcolor: "rgba(9,15,25,0.8)",
+      fontcolor: "#ffffff",
+      hightlightcolor: "#7427a9",
+      fontname: "Saira Condensed",
+      googlefont: "Saira+Condensed:wght@100",
+      fontratio: "0.3",
+      radioname: "A maior diversidade de ritmos!",
+      scroll: "true",
+      coverimage: "https://raw.githubusercontent.com/radio-diversidade-poa/player_radio_diversidade_poa_listen2myradio/main/logo_radio_250.png",
+      usevisualizer: "fake",
+      coverstyle: "animated",
+      visualizertype: "6",
+      multicolorvisualizer: "true",
+      color1: "#7427a9",
+      color2: "#7427a9",
+      color3: "#7427a9",
+      color4: "#7427a9",
+      itunestoken: "1000lIPN",
+      metadatatechnic: "corsproxy",
+      ownmetadataurl: "",
+      streamurl: "https://fpsnew1.listen2myradio.com:2199/listen.php?ip=82.145.63.6&port=4294&type=ice&mount=stream",
+      streamtype: "shoutcast1",
+      icecastmountpoint: "",
+      radionomyid: "",
+      radionomyapikey: "",
+      radiozenoid: "",
+      radiojarid: "",
+      radiocoid: "",
+      shoutcastpath: "/;",
+      shoutcastid: "1",
+      streamsuffix: "",
+      metadatainterval: "20000",
+      volume: "85",
+      debug: "false",
+      usestreamcorsproxy: "false",
+      corsproxy: "https://corsradio.herokuapp.com/index.php?q=",
+      autoplay: "true"
