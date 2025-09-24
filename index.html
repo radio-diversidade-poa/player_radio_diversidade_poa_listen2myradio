@@ -1,0 +1,29 @@
+<div style="background-color: #ffffff; color: #26163b; border: 2px solid #d4d4d4; border-radius: 0.5rem; padding: 1rem; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 100%;">
+    <div style="background-image: url('https://raw.github.com/radio-diversidade-poa/player_radio_diversidade_poa_listen2myradio/main/images/logo/logo_radio_250.png'); background-size: cover; background-position: center; background-repeat: no-repeat; border-radius: 50%; width: 128px; height: 128px; margin-bottom: 1rem; margin-top: 1rem; display: block; margin-left: auto; margin-right: auto;"></div>
+    
+    <audio id="radioPlayer" autoplay controls style="width: 100%;" src="https://fpsnew1.listen2myradio.com:2199/listen.php?ip=82.145.63.6&port=4294&type=ice&mount=stream"></audio>
+</div>
+
+<script>
+    const radioPlayer = document.getElementById('radioPlayer');
+
+    radioPlayer.addEventListener('ended', () => {
+        setTimeout(() => {
+            radioPlayer.load();
+            radioPlayer.play().catch(e => {
+                console.error("Erro ao tentar reiniciar a reprodução:", e);
+            });
+        }, 5000);
+    });
+    
+    radioPlayer.addEventListener('pause', () => {
+        if (!radioPlayer.paused && radioPlayer.duration === Infinity) {
+            setTimeout(() => {
+                radioPlayer.load();
+                radioPlayer.play().catch(e => {
+                    console.error("Erro ao tentar reiniciar a reprodução:", e);
+                });
+            }, 5000);
+        }
+    });
+</script>
