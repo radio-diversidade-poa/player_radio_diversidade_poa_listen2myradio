@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Player Rádio Diversidade</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --cor-fundo-caixinha: #26163b;
@@ -15,10 +13,11 @@
     --cor-borda-player: #d4d4d4;
     --fonte-frase: 'Open Sans', sans-serif;
 }
-
-body {
-    margin: 0;
-    padding: 0;
+* { box-sizing: border-box; }
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    background-color: transparent !important;
 }
 
 .player-container {
@@ -31,10 +30,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 100%;
+    /* AJUSTE: Largura total para ser ajustável no Google Sites */
+    width: 100%; 
     position: relative;
-    /* Espaço para o selo e as ondas sonoras */
-    padding-bottom: 120px; 
+    /* AJUSTE: Altura mínima para manter o visual e tirar o branco do fundo */
+    min-height: 400px;
+    padding-bottom: 70px; 
+    overflow: hidden;
 }
 
 .player-logo {
@@ -43,10 +45,9 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 50%;
-    width: 128px;
-    height: 128px;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    width: 130px;
+    height: 130px;
+    margin: 1rem 0;
     display: block;
 }
 
@@ -55,51 +56,35 @@ body {
     width: 100%;
     text-align: center;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
-.player-audio {
-    width: 100%;
-    z-index: 2; /* Garante que o player fique acima de tudo */
-    position: relative;
+.player-audio { 
+    width: 100%; 
+    max-width: 600px; /* Limite para a barra não ficar gigante em telas ultra-largas */
+    z-index: 2; 
+    position: relative; 
 }
 
-/* Container da Classificação entre o Player e as Ondas, com espaçamento proporcional */
 .classificacao-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-top: 20px; /* Distância do player acima */
-    margin-bottom: 15px; /* Distância das ondas abaixo */
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 5px;
     z-index: 2;
     position: relative;
 }
 
-.selo-l {
-    width: 20px; /* Tamanho proporcional para não brigar com o play */
-    height: 20px;
-    border-radius: 3px;
-}
+.selo-l { width: 22px; height: 22px; border-radius: 3px; }
 
 .classificacao-texto {
     font-family: var(--fonte-frase);
-    font-size: 0.85rem; /* Um pouco menor para não brigar com o "Clique e Ouça" */
+    font-size: 0.9rem;
     font-weight: bold;
     color: #ffffff;
-    letter-spacing: 0.2px;
-}
-
-.player-audio::-webkit-media-controls-panel {
-    background-color: transparent;
-}
-
-.player-audio::-webkit-media-controls-play-button,
-.player-audio::-webkit-media-controls-mute-button,
-.player-audio::-webkit-media-controls-volume-slider {
-    background-color: var(--cor-botoes-player);
-    border-radius: 0.25rem;
 }
 
 #audioVisualizer {
@@ -107,48 +92,33 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 65px; /* Altura das ondas */
-    z-index: 1; /* Fica atrás do selo se as ondas subirem muito */
+    height: 65px;
+    z-index: 1;
 }
 </style>
 </head>
 <body>
-
 <div class="player-container">
     <div class="player-logo"></div>
-    
-    <div class="player-phrase">
-        <span>Clique e ouça!<br>Rádio Diversidade Poa</span>
-    </div>
-    
+    <div class="player-phrase"><span>Clique e ouça!<br>Rádio Diversidade Poa</span></div>
     <audio id="radioPlayer" autoplay controls class="player-audio" src="https://stm1.uniservstm.stream:6732/stream"></audio>
-
     <div class="classificacao-container">
         <img src="https://raw.githubusercontent.com/radio-diversidade-poa/player_radio_diversidade_poa_listen2myradio/main/images/selo-livre.png" alt="L" class="selo-l">
         <span class="classificacao-texto">Classificação Indicativa: Livre</span>
     </div>
-
     <canvas id="audioVisualizer"></canvas>
 </div>
 
 <script>
 const radioPlayer = document.getElementById('radioPlayer');
-
 radioPlayer.addEventListener('ended', () => {
-    setTimeout(() => {
-        radioPlayer.load();
-        radioPlayer.play().catch(e => console.error(e));
-    }, 5000);
+    setTimeout(() => { radioPlayer.load(); radioPlayer.play().catch(e => console.error(e)); }, 5000);
 });
-</script>
-
-<script>
 const canvas = document.getElementById('audioVisualizer');
 const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+function resizeCanvas() { 
+    canvas.width = canvas.clientWidth; 
+    canvas.height = canvas.clientHeight; 
 }
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
@@ -158,44 +128,23 @@ let bars = Array.from({length: 60}, () => Math.random() * canvas.height);
 let animating = false;
 
 function draw() {
-    if (!animating) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        return;
-    }
-
+    if (!animating) { ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
     requestAnimationFrame(draw);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     const barWidth = canvas.width / bars.length;
     let x = 0;
-
     for (let i = 0; i < bars.length; i++) {
         bars[i] += (Math.random() - 0.5) * 5;
         if (bars[i] < 5) bars[i] = 5;
         if (bars[i] > canvas.height) bars[i] = canvas.height;
-
-        ctx.fillStyle = (i % 2 === 0) 
-            ? `hsl(${hue}, 80%, 60%)` 
-            : `hsl(${hue + 60}, 80%, 60%)`;
+        ctx.fillStyle = (i % 2 === 0) ? `hsl(${hue}, 80%, 60%)` : `hsl(${hue + 60}, 80%, 60%)`;
         ctx.fillRect(x, canvas.height - bars[i], barWidth - 2, bars[i]);
-
         x += barWidth;
     }
-
-    hue += 0.5;
-    if (hue > 360) hue = 0;
+    hue += 0.5; if (hue > 360) hue = 0;
 }
-
-radioPlayer.addEventListener('play', () => {
-    animating = true;
-    draw();
-});
-
-radioPlayer.addEventListener('pause', () => {
-    animating = false;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-});
+radioPlayer.addEventListener('play', () => { animating = true; draw(); });
+radioPlayer.addEventListener('pause', () => { animating = false; ctx.clearRect(0, 0, canvas.width, canvas.height); });
 </script>
-
 </body>
 </html>
