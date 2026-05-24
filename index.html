@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rádio Banner</title>
+<title>Rádio</title>
 
 <style>
 *{
@@ -21,8 +21,6 @@ body{
     width:100%;
     background:#7427a9;
     padding:4px 8px;
-    margin:0;
-    overflow:hidden;
 }
 
 .radio-wrap{
@@ -40,13 +38,26 @@ body{
     aspect-ratio:4/5;
     border-radius:12px;
     overflow:hidden;
-    background:#fff;
 }
 
-.player-box iframe{
+.player-box{
+    background:#ffffff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    text-align:center;
+}
+
+.player-box h2{
+    color:#7427a9;
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+audio{
     width:100%;
-    height:100%;
-    border:none;
 }
 
 .banner-box img{
@@ -59,11 +70,6 @@ body{
 @media(max-width:768px){
     .radio-wrap{
         flex-direction:column;
-        gap:8px;
-    }
-
-    .radio-banner{
-        padding:3px 5px;
     }
 }
 </style>
@@ -73,12 +79,15 @@ body{
 <div class="radio-banner">
     <div class="radio-wrap">
 
-        <!-- PLAYER -->
         <div class="player-box">
-            <iframe src="https://stm1.uniservstm.stream:6732/stream"></iframe>
+            <h2>AO VIVO</h2>
+
+            <audio controls autoplay>
+                <source src="https://stm1.uniservstm.stream:6732/stream" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+            </audio>
         </div>
 
-        <!-- BANNER -->
         <div class="banner-box">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4lgQ9dPqG8VaJt6_2G_i2Fx_o6JfSFTikyzVzbDXGvCz09HjFQymkupoQowqG6YgRMnUTzzS5hWdHtp6Zmk0IDagDl4BzeeBqQK5qfHSzNOPSZCDViT0XlYy-nD51e597v-doNG05rvmKqQmI99BUHGjcpY-MHNV-2_jTmngjaZbZ5W-rUAIKwRY0ue0w/s320/_banner_familia.jpeg" alt="Banner Natal">
         </div>
