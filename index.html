@@ -3,6 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player Rádio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: transparent;
+}
+
+/* Banner principal */
+.radio-banner{
+    width:100%;
+    background:#7427a9;
+    padding:6px 10px;
+    margin:0;
+    overflow:hidden;
+}
+
+/* Estrutura interna */
+.radio-wrap{
+    max-width:1400px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+}
+
+/* Player */
+.player-box{
+    flex:1;
+    aspect-ratio:4/5;
+    min-height:420px;
+    border:none;
+    border-radius:12px;
+    overflow:hidden;
+    background:#fff;
+}
+
+/* Imagem */
+.banner-box{
+    flex:1;
+    aspect-ratio:4/5;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.banner-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* iframe player */
+.player-box iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .radio-wrap{
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .player-box,
+    .banner-box{
+        width:100%;
+        min-height:auto;
+        aspect-ratio:4/5;
+    }
+
+    .radio-banner{
+        padding:4px 6px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="radio-banner">
+    <div class="radio-wrap">
+
+        <!-- PLAYER -->
+        <div class="player-box">
+            <iframe src="<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Player Rádio Diversidade</title>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 
@@ -11,7 +109,7 @@
     --cor-fundo-caixinha: #26163b;
     --cor-borda-player: #d4d4d4;
     --cor-texto-player: #ffffff;
-    --cor-banner: #7427a9;
+    --cor-banner: #1d102d;
     --fonte-frase: 'Open Sans', sans-serif;
 }
 
@@ -166,8 +264,7 @@ html, body {
 
     <!-- TROCA AQUI -->
     <div class="banner-lateral">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4lgQ9dPqG8VaJt6_2G_i2Fx_o6JfSFTikyzVzbDXGvCz09HjFQymkupoQowqG6YgRMnUTzzS5hWdHtp6Zmk0IDagDl4BzeeBqQK5qfHSzNOPSZCDViT0XlYy-nD51e597v-doNG05rvmKqQmI99BUHGjcpY-MHNV-2_jTmngjaZbZ5W-rUAIKwRY0ue0w/s320/_banner_familia.jpeg
-">
+        <img src="COLE_SEU_LINK_AQUI">
     </div>
 
 </div>
@@ -220,4 +317,16 @@ function draw() {
             : `hsl(${hue+60},80%,60%)`;
 
         ctx.fillRect(x, canvas.height - bars[i], barWidth - 2, bars[i]);
-        x +=
+        x +="></iframe>
+        </div>
+
+        <!-- IMAGEM -->
+        <div class="banner-box">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4lgQ9dPqG8VaJt6_2G_i2Fx_o6JfSFTikyzVzbDXGvCz09HjFQymkupoQowqG6YgRMnUTzzS5hWdHtp6Zmk0IDagDl4BzeeBqQK5qfHSzNOPSZCDViT0XlYy-nD51e597v-doNG05rvmKqQmI99BUHGjcpY-MHNV-2_jTmngjaZbZ5W-rUAIKwRY0ue0w/s320/_banner_familia.jpeg" alt="Banner Rádio">
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
