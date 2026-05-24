@@ -5,109 +5,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Player Rádio Diversidade</title>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --cor-fundo-caixinha: #26163b;
-    --cor-borda-player: #d4d4d4;
+    --cor-botoes-player: #d4d4d4;
     --cor-texto-player: #ffffff;
-    --cor-banner: #7427a9;
+    --cor-borda-player: #d4d4d4;
     --fonte-frase: 'Open Sans', sans-serif;
 }
-
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    background: transparent !important;
-}
-
-.layout-wrapper {
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    align-items: stretch;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 4px;
-    background: #7427a9;
-    border-radius: 12px;
+* { box-sizing: border-box; }
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    background-color: transparent !important;
 }
 
 .player-container {
-    flex: 1.4;
-    min-width: 320px;
     background-color: var(--cor-fundo-caixinha);
     color: var(--cor-texto-player);
     border: 2px solid var(--cor-borda-player);
-    border-radius: 10px;
+    border-radius: 0.5rem;
     padding: 1rem;
-    min-height: 480px;
-    padding-bottom: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* AJUSTE: Largura total para ser ajustável no Google Sites */
+    width: 100%; 
     position: relative;
+    /* AJUSTE: Altura mínima para manter o visual e tirar o branco do fundo */
+    min-height: 400px;
+    padding-bottom: 70px; 
     overflow: hidden;
-}
-
-.banner-lateral {
-    flex: 1.6;
-    min-width: 320px;
-    min-height: 480px;
-    background: var(--cor-banner);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.banner-lateral img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-@media (max-width: 768px) {
-    .layout-wrapper {
-        flex-direction: column;
-    }
-
-    .player-container {
-        order: 1;
-    }
-
-    .banner-lateral {
-        order: 2;
-        min-height: 260px;
-    }
 }
 
 .player-logo {
     background-image: url('https://raw.githubusercontent.com/radio-diversidade-poa/player_radio_diversidade_poa_listen2myradio/main/images/logo/logo_radio_250.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     margin: 1rem 0;
+    display: block;
 }
 
 .player-phrase {
     font-family: var(--fonte-frase);
+    width: 100%;
     text-align: center;
     font-weight: bold;
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
-.player-audio {
-    width: 100%;
-    max-width: 600px;
-    z-index: 2;
-    position: relative;
+.player-audio { 
+    width: 100%; 
+    max-width: 600px; /* Limite para a barra não ficar gigante em telas ultra-largas */
+    z-index: 2; 
+    position: relative; 
 }
 
 .classificacao-container {
@@ -115,19 +72,19 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 25px;
+    margin-top: 20px;
+    margin-bottom: 5px;
     z-index: 2;
+    position: relative;
 }
 
-.selo-l {
-    width: 24px;
-    height: 24px;
-}
+.selo-l { width: 22px; height: 22px; border-radius: 3px; }
 
 .classificacao-texto {
     font-family: var(--fonte-frase);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
+    color: #ffffff;
 }
 
 #audioVisualizer {
@@ -135,100 +92,59 @@ html, body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 85px;
+    height: 65px;
+    z-index: 1;
 }
 </style>
 </head>
-
 <body>
-
-<div class="layout-wrapper">
-
-    <div class="player-container">
-        <div class="player-logo"></div>
-
-        <div class="player-phrase">
-            Clique e ouça!<br>Rádio Diversidade Poa
-        </div>
-
-        <audio id="radioPlayer" autoplay controls class="player-audio"
-            src="https://stm1.uniservstm.stream:6732/stream"></audio>
-
-        <div class="classificacao-container">
-            <img src="https://raw.githubusercontent.com/radio-diversidade-poa/player_radio_diversidade_poa_listen2myradio/main/images/selo-livre.png" class="selo-l">
-            <span class="classificacao-texto">
-                Classificação Indicativa: Livre
-            </span>
-        </div>
-
-        <canvas id="audioVisualizer"></canvas>
+<div class="player-container">
+    <div class="player-logo"></div>
+    <div class="player-phrase"><span>Clique e ouça!<br>Rádio Diversidade Poa</span></div>
+    <audio id="radioPlayer" autoplay controls class="player-audio" src="https://stm1.uniservstm.stream:6732/stream"></audio>
+    <div class="classificacao-container">
+        <img src="https://raw.githubusercontent.com/radio-diversidade-poa/player_radio_diversidade_poa_listen2myradio/main/images/selo-livre.png" alt="L" class="selo-l">
+        <span class="classificacao-texto">Classificação Indicativa: Livre</span>
     </div>
-
-    <div class="banner-lateral">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4lgQ9dPqG8VaJt6_2G_i2Fx_o6JfSFTikyzVzbDXGvCz09HjFQymkupoQowqG6YgRMnUTzzS5hWdHtp6Zmk0IDagDl4BzeeBqQK5qfHSzNOPSZCDViT0XlYy-nD51e597v-doNG05rvmKqQmI99BUHGjcpY-MHNV-2_jTmngjaZbZ5W-rUAIKwRY0ue0w/s320/_banner_familia.jpeg">
-    </div>
-
+    <canvas id="audioVisualizer"></canvas>
 </div>
 
 <script>
 const radioPlayer = document.getElementById('radioPlayer');
-
 radioPlayer.addEventListener('ended', () => {
-    setTimeout(() => {
-        radioPlayer.load();
-        radioPlayer.play().catch(e => console.error(e));
-    }, 5000);
+    setTimeout(() => { radioPlayer.load(); radioPlayer.play().catch(e => console.error(e)); }, 5000);
 });
-
 const canvas = document.getElementById('audioVisualizer');
 const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+function resizeCanvas() { 
+    canvas.width = canvas.clientWidth; 
+    canvas.height = canvas.clientHeight; 
 }
-
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
+let hue = 260;
 let bars = Array.from({length: 60}, () => Math.random() * canvas.height);
 let animating = false;
 
 function draw() {
-    if (!animating) {
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        return;
-    }
-
+    if (!animating) { ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
     requestAnimationFrame(draw);
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     const barWidth = canvas.width / bars.length;
     let x = 0;
-
     for (let i = 0; i < bars.length; i++) {
         bars[i] += (Math.random() - 0.5) * 5;
-
         if (bars[i] < 5) bars[i] = 5;
         if (bars[i] > canvas.height) bars[i] = canvas.height;
-
-        ctx.fillStyle = i % 2 === 0 ? '#9b59ff' : '#ffffff';
+        ctx.fillStyle = (i % 2 === 0) ? `hsl(${hue}, 80%, 60%)` : `hsl(${hue + 60}, 80%, 60%)`;
         ctx.fillRect(x, canvas.height - bars[i], barWidth - 2, bars[i]);
         x += barWidth;
     }
+    hue += 0.5; if (hue > 360) hue = 0;
 }
-
-radioPlayer.addEventListener('play', () => {
-    animating = true;
-    draw();
-});
-
-radioPlayer.addEventListener('pause', () => {
-    animating = false;
-});
-
-draw();
+radioPlayer.addEventListener('play', () => { animating = true; draw(); });
+radioPlayer.addEventListener('pause', () => { animating = false; ctx.clearRect(0, 0, canvas.width, canvas.height); });
 </script>
-
 </body>
 </html>
