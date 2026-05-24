@@ -62,7 +62,7 @@ html, body {
 
 .player-audio { 
     width: 100%; 
-    max-width: 600px; /* Limite para a barra não ficar gigante em telas ultra-largas */
+    max-width: 100px; /* Limite para a barra não ficar gigante em telas ultra-largas */
     z-index: 2; 
     position: relative; 
 }
@@ -95,6 +95,20 @@ html, body {
     height: 65px;
     z-index: 1;
 }
+
+@media (max-width: 768px) {
+    .player-container {
+        min-height: 250px;
+        padding-bottom: 60px;
+        overflow-x: hidden;
+    }
+
+    .classificacao-container {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+}
+
 </style>
 </head>
 <body>
