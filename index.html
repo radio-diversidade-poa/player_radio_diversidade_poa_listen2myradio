@@ -25,7 +25,6 @@ html, body {
     background: transparent !important;
 }
 
-/* Estrutura geral */
 .layout-wrapper {
     width: 100%;
     display: flex;
@@ -35,20 +34,19 @@ html, body {
     margin: 0;
     padding: 4px;
     background: #7427a9;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
-/* Player */
 .player-container {
-    flex: 2;
+    flex: 1.4;
     min-width: 320px;
     background-color: var(--cor-fundo-caixinha);
     color: var(--cor-texto-player);
     border: 2px solid var(--cor-borda-player);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 1rem;
-    min-height: 400px;
-    padding-bottom: 70px;
+    min-height: 480px;
+    padding-bottom: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,13 +55,12 @@ html, body {
     overflow: hidden;
 }
 
-/* Banner lateral */
 .banner-lateral {
-    flex: 1;
-    min-width: 250px;
-    min-height: 400px;
+    flex: 1.6;
+    min-width: 320px;
+    min-height: 480px;
     background: var(--cor-banner);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -73,7 +70,6 @@ html, body {
     object-fit: cover;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
     .layout-wrapper {
         flex-direction: column;
@@ -85,7 +81,7 @@ html, body {
 
     .banner-lateral {
         order: 2;
-        min-height: 220px;
+        min-height: 260px;
     }
 }
 
@@ -94,8 +90,8 @@ html, body {
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     margin: 1rem 0;
 }
 
@@ -103,8 +99,8 @@ html, body {
     font-family: var(--fonte-frase);
     text-align: center;
     font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
 }
 
 .player-audio {
@@ -119,18 +115,18 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 25px;
     z-index: 2;
 }
 
 .selo-l {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
 }
 
 .classificacao-texto {
     font-family: var(--fonte-frase);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -139,7 +135,7 @@ html, body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 65px;
+    height: 85px;
 }
 </style>
 </head>
@@ -195,7 +191,6 @@ function resizeCanvas() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-let hue = 260;
 let bars = Array.from({length: 60}, () => Math.random() * canvas.height);
 let animating = false;
 
@@ -217,10 +212,7 @@ function draw() {
         if (bars[i] < 5) bars[i] = 5;
         if (bars[i] > canvas.height) bars[i] = canvas.height;
 
-        ctx.fillStyle = i % 2 === 0
-            ? `hsl(${hue},80%,60%)`
-            : `hsl(${hue+60},80%,60%)`;
-
+        ctx.fillStyle = i % 2 === 0 ? '#9b59ff' : '#ffffff';
         ctx.fillRect(x, canvas.height - bars[i], barWidth - 2, bars[i]);
         x += barWidth;
     }
