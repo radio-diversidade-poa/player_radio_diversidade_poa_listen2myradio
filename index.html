@@ -30,10 +30,8 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* AJUSTE: Largura total para ser ajustável no Google Sites */
     width: 100%; 
     position: relative;
-    /* AJUSTE: Altura mínima para manter o visual e tirar o branco do fundo */
     min-height: 400px;
     padding-bottom: 70px; 
     overflow: hidden;
@@ -62,7 +60,7 @@ html, body {
 
 .player-audio { 
     width: 100%; 
-    max-width: 600px; /* Limite para a barra não ficar gigante em telas ultra-largas */
+    max-width: 600px; 
     z-index: 2; 
     position: relative; 
 }
@@ -111,9 +109,32 @@ html, body {
 
 <script>
 const radioPlayer = document.getElementById('radioPlayer');
-radioPlayer.addEventListener('ended', () => {
-    setTimeout(() => { radioPlayer.load(); radioPlayer.play().catch(e => console.error(e)); }, 5000);
+
+// FUNÇÃO DE RECONEXÃO AUTOMÁTICA (O VIGIA)
+function tentarReconectar() {
+    setTimeout(() => {
+        console.log("Tentando recuperar o sinal da rádio...");
+        // Recarrega o link puro para limpar qualquer travamento de buffer
+        const srcAtual = radioPlayer.src;
+        radioPlayer.src = "";
+        radioPlayer.src = srcAtual;
+        radioPlayer.load();
+        radioPlayer.play().catch(e => console.log("Aguardando rede para dar play..."));
+    }, 3000); // Espera 3 segundos para a internet respirar e reconecta
+}
+
+// Escuta se o fluxo parou por erro de rede
+radioPlayer.addEventListener('error', tentarReconectar);
+
+// Escuta se o player ficou mudo ou parado esperando dados
+radioPlayer.addEventListener('waiting', () => {
+    // Força o play se ele ficar congelado em modo de espera
+    radioPlayer.play().catch(e => console.log("Aguardando buffer..."));
 });
+
+// Mantido por segurança para o caso do servidor reiniciar do zero
+radioPlayer.addEventListener('ended', tentarReconectar);
+
 const canvas = document.getElementById('audioVisualizer');
 const ctx = canvas.getContext('2d');
 function resizeCanvas() { 
